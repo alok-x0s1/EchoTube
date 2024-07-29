@@ -1,0 +1,25 @@
+{
+  "name": "youtube",
+  "version": "1.0.0",
+  "description": "Backend project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alok-x0s1/Backend-Tutorial.git"
+  },
+  "keywords": [
+    "nodeJs",
+    "expressJs",
+    "mongoDB",
+    "mongoose"
+  ],
+  "author": "@lokYadav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alok-x0s1/Backend-Tutorial/issues"
+  },
+  "homepage": "https://github.com/alok-x0s1/Backend-Tutorial#readme"
+}
