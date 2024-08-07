@@ -1,5 +1,5 @@
 {
-  "name": "youtube",
+  "name": "echotube",
   "version": "1.0.0",
   "description": "Backend project",
   "main": "index.js",
