@@ -146,8 +146,8 @@ const logoutUser = asyncHandler(async (req, res) => {
     await User.findByIdAndUpdate(
         userId,
         {
-            $set: {
-                refreshToken: undefined,
+            $unset: {
+                refreshToken: 1,
             },
         },
         {
@@ -410,12 +410,12 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
 });
 
 const getWatchHistory = asyncHandler(async (req, res) => {
-    // TODO: 
+    // TODO:
     const user = await User.aggregate([
         {
             $match: {
                 _id: new mongoose.Types.ObjectId(req.user?._id),
-            }
+            },
         },
         {
             $lookup: {
@@ -438,23 +438,23 @@ const getWatchHistory = asyncHandler(async (req, res) => {
                                         fullname: 1,
                                         username: 1,
                                         avatar: 1,
-                                    }
-                                }
-                            ]
-                        }
+                                    },
+                                },
+                            ],
+                        },
                     },
                     {
                         $addFields: {
                             owner: {
                                 $first: "$owner",
                                 // $arrayElemAt: ["$owner", 0],
-                            }
-                        }
-                    }
-                ]
+                            },
+                        },
+                    },
+                ],
             },
         },
-    ])
+    ]);
 
     if (!user?.length) {
         throw new ApiError(404, "User not found.");
