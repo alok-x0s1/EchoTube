@@ -66,36 +66,42 @@ EchoTube is a backend project similar to YouTube with features like user creatio
 
 ```plaintext
 .
-├── controllers
-│   ├── authController.js
-│   ├── commentController.js
-│   ├── tweetController.js
-│   └── videoController.js
-├── models
-│   ├── Comment.js
-│   ├── Tweet.js
-│   ├── User.js
-│   └── Video.js
-├── routes
-│   ├── authRoutes.js
-│   ├── commentRoutes.js
-│   ├── tweetRoutes.js
-│   └── videoRoutes.js
-├── middlewares
-│   ├── authMiddleware.js
-│   └── errorMiddleware.js
-├── utils
-│   └── ApiError.js
-│   └── ApiResponse.js
-│   └── asyncHandler.js
-│   └── cloudinary.js
-├── app.js
-├── constants.js
-├── index.js
+├── node_modules
+├── public
+│   └── temp
+│       └── .gitkeep
+├── src
+│   ├── controllers
+│   │   ├── authController.js
+│   │   ├── commentController.js
+│   │   ├── tweetController.js
+│   │   └── videoController.js
+│   ├── models
+│   │   ├── Comment.js
+│   │   ├── Tweet.js
+│   │   ├── User.js
+│   │   └── Video.js
+│   ├── routes
+│   │   ├── authRoutes.js
+│   │   ├── commentRoutes.js
+│   │   ├── tweetRoutes.js
+│   │   └── videoRoutes.js
+│   ├── middlewares
+│   │   ├── authMiddleware.js
+│   │   └── errorMiddleware.js
+│   ├── utils
+│   │   ├── ApiError.js
+│   │   ├── ApiResponse.js
+│   │   ├── asyncHandler.js
+│   │   └── cloudinary.js
+│   ├── app.js
+│   ├── constants.js
+│   ├── index.js
+│   └── server.js
 ├── .env
 ├── .gitignore
 ├── .prettierignore
 ├── .prettierrc
-├── .package-lock.json
-├── .package.json
-└── server.js
+├── package-lock.json
+├── package.json
+└── README.md

@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alok-x0s1/Backend-Tutorial.git"
+    "url": "git+https://github.com/alok-x0s1/EchoTube.git"
   },
   "keywords": [
     "nodeJs",
@@ -21,9 +21,9 @@
   "author": "@lokYadav",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alok-x0s1/Backend-Tutorial/issues"
+    "url": "https://github.com/alok-x0s1/EchoTube/issues"
   },
-  "homepage": "https://github.com/alok-x0s1/Backend-Tutorial#readme",
+  "homepage": "https://github.com/alok-x0s1/EchoTube#readme",
   "devDependencies": {
     "prettier": "^3.3.3"
   },
