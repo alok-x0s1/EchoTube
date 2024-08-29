@@ -4,10 +4,9 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import mongoose from "mongoose";
 import { Video } from "../models/video.model.js";
 import { Subscription } from "../models/subscription.model.js";
+import { User } from "../models/user.model.js";
 
 const getChannelStats = asyncHandler(async (req, res) => {
-    // TODO: Get the channel stats like total video views, total subscribers, total videos, total likes etc.
-
     const videoCount = await Video.aggregate([
         {
             $match: {
@@ -72,7 +71,7 @@ const getChannelStats = asyncHandler(async (req, res) => {
         },
     ]);
 
-    if (!subscribers.length) {
+    if (!subscribers.length === 0) {
         throw new ApiError("No subscribers found for this channel", 404);
     }
 
@@ -96,6 +95,10 @@ const getChannelVideos = asyncHandler(async (req, res) => {
     if (!userId) {
         throw new ApiError(400, "UserId is required.");
     }
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+        throw new ApiError(400, "Invalid UserId.");
+    }
+
     const user = await User.findById(userId);
     if (!user) {
         throw new ApiError(404, "User not found with this id.");
@@ -132,7 +135,9 @@ const getChannelVideos = asyncHandler(async (req, res) => {
         options
     );
     if (result.docs.length === 0) {
-        throw new ApiError(404, "No videos found for this user.");
+        return res
+            .status(200)
+            .json(new ApiResponse(200, [], "No videos found for this user."));
     }
 
     return res

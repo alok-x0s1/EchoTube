@@ -3,7 +3,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { Playlist } from "../models/playlist.model.js";
 import { Video } from "../models/video.model.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import { isValidObjectId } from "mongoose";
+import mongoose, { isValidObjectId } from "mongoose";
 
 const createPlaylist = asyncHandler(async (req, res) => {
     const { name, description } = req.body;
@@ -250,11 +250,11 @@ const removeVideoFromPlaylist = asyncHandler(async (req, res) => {
         throw new ApiError(404, "Playlist not found.");
     }
 
-    if (!playlist.videos.includes(videoId)) {
+    if (!playlist.videos.some((id) => id.equals(videoId))) {
         throw new ApiError(400, "Video not found in playlist.");
     }
 
-    playlist.videos = playlist.videos.filter((id) => id !== videoId);
+    playlist.videos = playlist.videos.filter((id) => !id.equals(videoId));
     await playlist.save();
 
     return res

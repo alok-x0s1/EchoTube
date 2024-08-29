@@ -5,14 +5,14 @@ import {
     toggleCommentLike,
     toggleTweetLike,
     toggleVideoLike,
-} from "../controllers/like.controller";
+} from "../controllers/like.controller.js";
 
 const router = express.Router();
 router.use(verifyJWT);
 
-router.use("/toggle/v/:videoId").post(toggleVideoLike);
-router.use("/toggle/c/:commentId").post(toggleCommentLike);
-router.use("/toggle/t/:tweetId").post(toggleTweetLike);
+router.route("/toggle/v/:videoId").post(toggleVideoLike);
+router.route("/toggle/c/:commentId").post(toggleCommentLike);
+router.route("/toggle/t/:tweetId").post(toggleTweetLike);
 router.route("/videos").get(getLikedVideos);
 
 export default router;

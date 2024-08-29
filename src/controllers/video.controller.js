@@ -203,9 +203,20 @@ const getVideoById = asyncHandler(async (req, res) => {
 const updateVideo = asyncHandler(async (req, res) => {
     const { videoId } = req.params;
     const { title, description } = req.body;
+
     if (!isValidObjectId(videoId)) {
         throw new ApiError(400, "Invalid video id.");
     }
+
+    const existingVideo = await Video.findById(videoId);
+    if (!existingVideo) {
+        throw new ApiError(404, "Video not found.");
+    }
+
+    if (existingVideo.owner.toString() !== req.user._id.toString()) {
+        throw new ApiError(403, "You are not authorized to update this video.");
+    }
+
     if (!title || !description) {
         throw new ApiError(400, "Title and description are required.");
     }
@@ -245,10 +256,15 @@ const deleteVideo = asyncHandler(async (req, res) => {
         throw new ApiError(400, "Invalid video id.");
     }
 
-    const video = await Video.findByIdAndDelete(videoId);
+    const video = await Video.findById(videoId);
     if (!video) {
-        throw new ApiError(400, "Failed to delete video.");
+        throw new ApiError(404, "Video not found.");
     }
+
+    if (video.owner.toString() !== req.user._id.toString()) {
+        throw new ApiError(403, "You are not authorized to delete this video.");
+    }
+    await video.deleteOne();
 
     return res
         .status(200)
@@ -265,6 +281,13 @@ const togglePublishStatus = asyncHandler(async (req, res) => {
     if (!video) {
         throw new ApiError(404, "Video not found.");
     }
+    if (video.owner.toString() !== req.user._id.toString()) {
+        throw new ApiError(
+            403,
+            "You are not authorized to toggle publish status."
+        );
+    }
+
     video.isPublished = !video.isPublished;
     await video.save();
 

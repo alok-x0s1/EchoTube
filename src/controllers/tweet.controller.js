@@ -80,7 +80,7 @@ const getUserTweets = asyncHandler(async (req, res) => {
                 createdAt: 1,
                 likesCount: 1,
             },
-        }
+        },
     ]);
 
     if (tweets.length === 0) {
@@ -127,10 +127,16 @@ const deleteTweet = asyncHandler(async (req, res) => {
         throw new ApiError(400, "Invalid tweet id.");
     }
 
-    const tweet = await Tweet.findByIdAndDelete(tweetId);
+    const tweet = await Tweet.findById(tweetId);
     if (!tweet) {
-        throw new ApiError(400, "Failed to delete tweet.");
+        throw new ApiError(404, "Tweet not found.");
     }
+
+    if (tweet.owner.toString() !== req.user._id.toString()) {
+        throw new ApiError(403, "You are not authorized to delete this tweet.");
+    }
+
+    await tweet.deleteOne();
 
     return res
         .status(200)
