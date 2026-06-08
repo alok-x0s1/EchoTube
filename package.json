@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alok-x0s1/EchoTube.git"
+    "url": "git+https://github.com/03aey/echo-tube.git"
   },
   "keywords": [
     "nodeJs",
@@ -21,9 +21,9 @@
   "author": "@lokYadav",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alok-x0s1/EchoTube/issues"
+    "url": "https://github.com/03aey/echo-tube/issues"
   },
-  "homepage": "https://github.com/alok-x0s1/EchoTube#readme",
+  "homepage": "https://github.com/03aey/echo-tube#readme",
   "devDependencies": {
     "prettier": "^3.3.3"
   },

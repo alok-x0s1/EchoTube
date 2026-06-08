@@ -29,12 +29,14 @@ EchoTube is a backend project similar to YouTube with features like user creatio
 ## Installation
 
 1. **Clone the repository:**
+
     ```sh
-    git clone https://github.com/alok-x0s1/EchoTube.git
-    cd EchoTube
+    git clone https://github.com/03aey/echo-tube.git
+    cd echo-tube
     ```
 
 2. **Install dependencies:**
+
     ```sh
     npm install
     ```
@@ -42,6 +44,7 @@ EchoTube is a backend project similar to YouTube with features like user creatio
 3. **Set up environment variables:**
 
     Create a `.env` file in the root directory and add the following:
+
     ```env
     PORT=your_port
     MONGODB_URI=your_mongodb_uri
@@ -56,6 +59,7 @@ EchoTube is a backend project similar to YouTube with features like user creatio
     ```
 
 4. **Start the server:**
+
     ```sh
     npm start
     ```
@@ -105,3 +109,11 @@ EchoTube is a backend project similar to YouTube with features like user creatio
 ├── package-lock.json
 ├── package.json
 └── README.md
+```
+
+---
+
+[![GitHub](https://img.shields.io/badge/GitHub-03aey-181717?logo=github&logoColor=white)](https://github.com/03aey)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-in%2F03aey-0A66C2?logo=linkedin&logoColor=white)](https://linkedin.com/in/03aey)
+[![Portfolio](https://img.shields.io/badge/Portfolio-03aey.vercel.app-000000?logo=vercel&logoColor=white)](https://03aey.vercel.app)
+[![Linktree](https://img.shields.io/badge/Linktree-03aey-43E55E?logo=linktree&logoColor=white)](https://linktr.ee/03aey)

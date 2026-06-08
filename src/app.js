@@ -27,6 +27,7 @@ import commentRouter from "./routes/comment.route.js"
 import likeRouter from "./routes/like.route.js"
 import dashboardRouter from "./routes/dashboard.route.js"
 import healthCheckRouter from "./routes/healthcheck.route.js"
+import { ApiError } from "./utils/ApiError.js";
 
 // Routes declaration
 app.use("/api/v1/users", userRouter);
@@ -43,9 +44,16 @@ app.use("/api/v1/healthcheck", healthCheckRouter);
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).json({
-        message: "Something broke!",
-        error: err.message,
+    const statusCode = err.statusCode || 500;
+    const message = err.message || "Something broke! An error occurred while processing your request.";
+    const errors = err.errors || [];
+    const stack = process.env.NODE_ENV === "production" ? null : err.stack;
+    
+    res.status(statusCode).json({
+        success: false,
+        message,
+        errors,
+        stack,
     });
 });
 
